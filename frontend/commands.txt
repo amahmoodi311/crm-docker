@@ -1,0 +1,8 @@
+# Frontend setup commands
+npm install
+npm run build
+
+# Docker commands
+docker build -t crm-frontend .
+docker run -d --name crm-frontend -p 80:80 crm-frontend
+
