@@ -47,9 +47,9 @@ docker ps
 
 
 ### Screenshots
-- `screenshots/Screenshot 2025-09-11 004725.png` – Backend running
-- `screenshots/crm-doc1.png` – Backend Dockerfile
-- `screenshots/crm-doc3.png` – Spring application edits
+![Backend Dockerfile](https://github.com/amahmoodi311/crm-docker/blob/main/screenshots/crm-doc1.png)
+![Backend Running](https://github.com/amahmoodi311/crm-docker/blob/main/screenshots/crm-doc3.png)
+![spring.application](https://github.com/amahmoodi311/crm-docker/blob/9f6485dfe97f55399a9fb863bb092685acf6e4f2/Screenshot%202025-09-10%20234737.png)
 
 ## Frontend Setup
 
@@ -76,37 +76,14 @@ docker run -d --name crm-web --network crm-network -p 5173:5173 crm-web
 Verify container is running
 docker ps
 
-markdown
-Copy code
+
 
 ### Screenshots
-- `screenshots/Screenshot 2025-09-11 004926.png` – Frontend running
-- `screenshots/crm-doc5.png` – Frontend Dockerfile
+![Frontend Dockerfile](https://github.com/amahmoodi311/crm-docker/blob/main/screenshots/Screenshot%202025-09-11%20004725.png)
+![Frontend Running](https://github.com/amahmoodi311/crm-docker/blob/main/screenshots/Screenshot%202025-09-11%20004926.png)
 
 
-## Repository Structure
 
-crm-docker/
-│
-├── backend/
-│ ├── Dockerfile # Backend Dockerfile
-│ └── commands.txt # Step-by-step backend commands
-│
-├── frontend/
-│ ├── Dockerfile # Frontend Dockerfile
-│ └── commands.txt # Step-by-step frontend commands
-│
-├── screenshots/
-│ ├── crm-doc1.png
-│ ├── crm-doc3.png
-│ ├── crm-doc5.png
-│ ├── Screenshot 2025-09-11 004725.png # Backend running
-│ └── Screenshot 2025-09-11 004926.png # Frontend running
-│
-└── README.md # This file
-
-markdown
-Copy code
 
 ## Notes
 - Make sure Docker is installed and running before starting.
