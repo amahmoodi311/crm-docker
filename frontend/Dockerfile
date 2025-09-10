@@ -1,19 +1,15 @@
-# Step 1: Build the frontend
-FROM node:20-alpine AS builder
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-RUN npm run build
-
-# Step 2: Serve with nginx
+# Use Nginx to serve the built frontend
 FROM nginx:alpine
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Remove default Nginx website
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy the build files
+COPY dist/ /usr/share/nginx/html
+
+# Expose port 80
 EXPOSE 80
 
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
 
