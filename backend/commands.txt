@@ -1,0 +1,58 @@
+# =========================
+# CRM Backend Setup Commands
+# =========================
+
+# 1. Update and install Docker (if not installed)
+sudo apt-get update
+sudo apt-get install -y docker.io docker-compose curl
+
+# 2. Pull backend Docker image (or build locally)
+# Assuming you have a Dockerfile in crm-api folder
+cd ~/crm-app-manual/crm-api
+docker build -t crm-api .
+
+# 3. Create a Docker network (if not created)
+docker network create crm-network
+
+# 4. Start PostgreSQL container
+docker run -d --name crm-db --network crm-network \
+  -e POSTGRES_USER=crmuser \
+  -e POSTGRES_PASSWORD=Admin123 \
+  -e POSTGRES_DB=crmdb \
+  -p 5432:5432 \
+  postgres:15
+
+# 5. Start backend container
+docker run -d --name crm-api --network crm-network -p 8080:8080 crm-api
+
+# 6. Check running containers
+docker ps
+
+# 7. Check backend logs
+docker logs -f crm-api
+
+# 8. Optional: Access PostgreSQL from backend container to verify DB
+docker exec -it crm-api bash
+apt-get update && apt-get install -y postgresql-client
+psql -h crm-db -U crmuser -d crmdb
+# Type password when prompted: Admin123
+# Then exit
+exit
+
+# 9. Test backend endpoint
+curl http://<your-server-public-ip>:8080/v1
+
+# =========================
+# Backend Configuration Notes
+# =========================
+
+# - Edited pom.xml to include:
+#   - spring-boot-starter-data-jpa
+#   - spring-boot-starter-web
+#   - PostgreSQL dependency
+# - Updated application.properties for PostgreSQL:
+#   spring.datasource.url=jdbc:postgresql://crm-db:5432/crmdb
+#   spring.datasource.username=crmuser
+#   spring.datasource.password=Admin123
+# - Made sure Java 21 is used
+# =========================
